@@ -1,65 +1,7 @@
 import Layout from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import homeSecurity from "@/assets/home-security.jpg";
-import businessSecurity from "@/assets/business-security.jpg";
-import monitoringCenter from "@/assets/monitoring-center.jpg";
-import installation from "@/assets/installation.jpg";
-
-const services = [
-  {
-    id: "home-security",
-    title: "Home Security",
-    description: "Protect your family and property with our comprehensive home security camera systems. We offer high-resolution cameras with remote monitoring capabilities.",
-    image: homeSecurity,
-    features: [
-      "HD & 4K camera options",
-      "Night vision technology",
-      "Remote smartphone access",
-      "Motion detection alerts",
-      "Cloud & local storage"
-    ]
-  },
-  {
-    id: "business-systems",
-    title: "Business Systems",
-    description: "Robust, reliable, and scalable security solutions designed for commercial properties. From small offices to large enterprises, we have you covered.",
-    image: businessSecurity,
-    features: [
-      "Multi-site monitoring",
-      "Access control integration",
-      "Employee management",
-      "Analytics & reporting",
-      "Scalable infrastructure"
-    ]
-  },
-  {
-    id: "camera-systems",
-    title: "Camera Systems",
-    description: "State-of-the-art IP and analog camera systems offering high-definition video capture and advanced remote monitoring capabilities.",
-    image: installation,
-    features: [
-      "IP & analog cameras",
-      "PTZ functionality",
-      "Wide-angle coverage",
-      "Weatherproof options",
-      "Professional installation"
-    ]
-  },
-  {
-    id: "monitoring",
-    title: "24/7 Monitoring",
-    description: "Our Security Operations Center provides round-the-clock monitoring services, ensuring your property is always protected.",
-    image: monitoringCenter,
-    features: [
-      "24/7 live monitoring",
-      "Instant alert response",
-      "Emergency dispatch",
-      "Video verification",
-      "Dedicated support team"
-    ]
-  }
-];
+import { services } from "@/data/services";
 
 const Services = () => {
   return (
@@ -99,7 +41,7 @@ const Services = () => {
                       {service.title}
                     </h2>
                     <p className="text-muted-foreground mb-4 leading-relaxed">
-                      {service.description}
+                      {service.shortDescription}
                     </p>
                     <ul className="space-y-2 mb-6">
                       {service.features.slice(0, 3).map((feature) => (

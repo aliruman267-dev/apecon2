@@ -1,37 +1,9 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import homeSecurity from "@/assets/home-security.jpg";
-import businessSecurity from "@/assets/business-security.jpg";
-import monitoringCenter from "@/assets/monitoring-center.jpg";
-import installation from "@/assets/installation.jpg";
+import { getServicesForPreview } from "@/data/services";
 
-const services = [
-  {
-    title: "Home Security",
-    description: "Our home camera systems have high resolution and remote monitoring features for complete peace of mind.",
-    image: homeSecurity,
-    link: "/services/home-security"
-  },
-  {
-    title: "Business Systems",
-    description: "Robust, reliable, and scalable technology solutions to power and protect your enterprise.",
-    image: businessSecurity,
-    link: "/services/business-systems"
-  },
-  {
-    title: "Camera Systems",
-    description: "Network-enabled cameras offering high-definition video and advanced remote monitoring capabilities.",
-    image: installation,
-    link: "/services/camera-systems"
-  },
-  {
-    title: "24/7 Monitoring",
-    description: "Our Security Operations Center provides round-the-clock monitoring for your complete peace of mind.",
-    image: monitoringCenter,
-    link: "/services/monitoring"
-  }
-];
+const services = getServicesForPreview(4);
 
 const ServicesPreview = () => {
   return (
@@ -40,11 +12,11 @@ const ServicesPreview = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-            Check Out Our High Security
-            <span className="block text-primary">Camera Systems Services</span>
+            Professional Security
+            <span className="block text-primary">Solutions & Services</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            We produce professional solutions in camera systems. From residential to commercial, we have the expertise to keep you protected.
+            From CCTV and alarms to network infrastructure, we provide comprehensive security solutions for homes and businesses across the UK.
           </p>
         </div>
 
@@ -52,8 +24,8 @@ const ServicesPreview = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <Link 
-              key={service.title} 
-              to={service.link}
+              key={service.id} 
+              to={`/services/${service.id}`}
               className="group"
               style={{ animationDelay: `${index * 100}ms` }}
             >
@@ -70,7 +42,7 @@ const ServicesPreview = () => {
                     {service.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    {service.description}
+                    {service.shortDescription}
                   </p>
                   <div className="mt-4 flex items-center gap-2 text-primary font-medium text-sm">
                     Learn More

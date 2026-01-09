@@ -2,11 +2,14 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { getServicesForNavbar } from "@/data/services";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const location = useLocation();
+
+  const serviceLinks = getServicesForNavbar();
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -14,12 +17,7 @@ const Navbar = () => {
     { 
       name: "Services", 
       path: "/services",
-      dropdown: [
-        { name: "Home Security", path: "/services/home-security" },
-        { name: "Business Systems", path: "/services/business-systems" },
-        { name: "Camera Systems", path: "/services/camera-systems" },
-        { name: "24/7 Monitoring", path: "/services/monitoring" },
-      ]
+      dropdown: serviceLinks
     },
     { name: "FAQ", path: "/faq" },
     { name: "Contact", path: "/contact" },
@@ -74,7 +72,7 @@ const Navbar = () => {
                     onMouseEnter={() => setServicesOpen(true)}
                     onMouseLeave={() => setServicesOpen(false)}
                   >
-                    <div className="bg-background rounded-lg shadow-lg border border-border p-2 min-w-[200px]">
+                    <div className="bg-background rounded-lg shadow-lg border border-border p-2 min-w-[220px]">
                       {link.dropdown.map((item) => (
                         <Link
                           key={item.name}
