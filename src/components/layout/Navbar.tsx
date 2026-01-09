@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { getServicesForNavbar } from "@/data/services";
+import apeconLogo from "@/assets/apecon-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,11 +31,12 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-              <span className="text-xl font-bold text-primary-foreground">A</span>
-            </div>
-            <span className="text-2xl font-display font-bold text-foreground">apecon</span>
+          <Link to="/" className="flex items-center">
+            <img 
+              src={apeconLogo} 
+              alt="Apecon Security" 
+              className="h-12 md:h-14 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import apeconLogo from "@/assets/apecon-logo.png";
 
 const Footer = () => {
   return (
@@ -8,11 +9,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div>
-            <Link to="/" className="flex items-center gap-2 mb-6">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-                <span className="text-xl font-bold text-primary-foreground">A</span>
-              </div>
-              <span className="text-2xl font-display font-bold text-foreground">apecon</span>
+            <Link to="/" className="inline-block mb-6">
+              <img 
+                src={apeconLogo} 
+                alt="Apecon Security" 
+                className="h-10 w-auto object-contain"
+              />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Professional security camera systems and monitoring solutions for homes and businesses across the UK.
