@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Phone, Shield, CheckCircle } from "lucide-react";
-import heroImage from "@/assets/hero-security.jpg";
+import heroImage from "@/assets/hero-cctv-alarm.jpg";
 
 const Hero = () => {
   return (
@@ -48,15 +48,25 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Image */}
+          {/* Image with Overlay Text */}
           <div className="relative animate-slide-in-right">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img 
                 src={heroImage} 
-                alt="Professional CCTV camera installation"
+                alt="Professional CCTV and Intruder Alarm installation"
                 className="w-full h-auto object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent" />
+              
+              {/* Overlay Text */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+                <h2 className="text-2xl md:text-3xl font-display font-bold mb-2">
+                  CCTV & Intruder Alarm
+                </h2>
+                <p className="text-lg md:text-xl font-medium text-white/90">
+                  Install Now – Pay Monthly Available
+                </p>
+              </div>
             </div>
             
             {/* Floating Card */}
@@ -67,8 +77,8 @@ const Hero = () => {
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">Fast Communication</p>
-                  <a href="tel:03337723292" className="text-lg font-bold text-foreground hover:text-primary transition-colors">
-                    0333 772 3292
+                  <a href="tel:03337724575" className="text-lg font-bold text-foreground hover:text-primary transition-colors">
+                    0333 772 4575
                   </a>
                 </div>
               </div>

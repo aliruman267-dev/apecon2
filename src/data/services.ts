@@ -1,10 +1,7 @@
-import homeSecurity from "@/assets/home-security.jpg";
-import businessSecurity from "@/assets/business-security.jpg";
-import monitoringCenter from "@/assets/monitoring-center.jpg";
-import installation from "@/assets/installation.jpg";
 import cctvCamera from "@/assets/cctv-camera.jpg";
 import videoDoorbell from "@/assets/video-doorbell.jpg";
-import securityAlarm from "@/assets/security-alarm.jpg";
+import alarmKeypad from "@/assets/alarm-keypad.jpg";
+import intercomSystem from "@/assets/intercom-system.jpg";
 import networkConnectivity from "@/assets/network-connectivity.jpg";
 
 export interface Service {
@@ -21,8 +18,37 @@ export interface Service {
 
 export const services: Service[] = [
   {
+    id: "alarm",
+    title: "ALARM",
+    shortDescription: "Reliable wireless and wired alarm systems to protect your home or business from intruders.",
+    description: "Protect your property with our professional intruder alarm systems. We offer both wireless and wired configurations to suit any building type, from modern smart homes to traditional properties. Our alarms are designed for reliability and rapid response.",
+    image: alarmKeypad,
+    features: [
+      "Wireless and wired sensor options",
+      "Door, window, and motion sensors",
+      "Smartphone app control and alerts",
+      "24/7 monitoring service available",
+      "Battery backup for power outages",
+      "Pet-friendly sensor options"
+    ],
+    benefits: [
+      "Immediate alerts to intrusion attempts",
+      "Deter burglars before they enter",
+      "Lower home insurance costs",
+      "Professional monitoring options",
+      "Peace of mind at all times"
+    ],
+    useCases: [
+      "Residential properties of all sizes",
+      "Commercial buildings and offices",
+      "Retail stores and warehouses",
+      "Schools and public buildings"
+    ],
+    whyApecon: "Apecon's alarm installations are tailored to your property's unique layout. We use only trusted, reliable equipment and offer optional 24/7 monitoring services to ensure rapid response when you need it most."
+  },
+  {
     id: "cctv",
-    title: "CCTV (Wireless & Wired)",
+    title: "CCTV",
     shortDescription: "Professional CCTV systems with flexible wireless and wired options for complete property surveillance.",
     description: "Keep your property under constant watch with our professional-grade CCTV systems. We offer both wireless and wired solutions, tailored to your specific requirements, ensuring reliable coverage and crystal-clear footage day and night.",
     image: cctvCamera,
@@ -51,7 +77,7 @@ export const services: Service[] = [
   },
   {
     id: "video-doorbell",
-    title: "Video Door Bell",
+    title: "VIDEO DOORBELL",
     shortDescription: "Smart video doorbells that let you see and speak to visitors from anywhere using your smartphone.",
     description: "Never miss a visitor again with our smart video doorbell solutions. See, hear, and speak to anyone at your door from your smartphone, whether you're at home, at work, or on holiday. Our systems integrate seamlessly with your existing security setup.",
     image: videoDoorbell,
@@ -79,37 +105,37 @@ export const services: Service[] = [
     whyApecon: "We install and configure video doorbells that work perfectly with your home Wi-Fi and existing security systems. Apecon ensures reliable connectivity and provides full training on how to use your new device."
   },
   {
-    id: "security-alarm",
-    title: "Security Alarm (Wireless & Wired)",
-    shortDescription: "Reliable alarm systems with wireless and wired configurations to protect your home or business.",
-    description: "Protect your property with our professional alarm systems. We offer both wireless and wired configurations to suit any building type, from modern smart homes to traditional properties. Our alarms are designed for reliability and rapid response.",
-    image: securityAlarm,
+    id: "intercom",
+    title: "INTERCOM",
+    shortDescription: "Modern audio and video intercom systems for secure entry control at homes and commercial buildings.",
+    description: "Control access to your property with our professional intercom systems. From simple audio intercoms to advanced video entry systems with remote unlock capabilities, we provide solutions that enhance security while adding convenience.",
+    image: intercomSystem,
     features: [
-      "Wireless and wired sensor options",
-      "Door, window, and motion sensors",
-      "Smartphone app control and alerts",
-      "24/7 monitoring service available",
-      "Battery backup for power outages",
-      "Pet-friendly sensor options"
+      "Audio and video intercom options",
+      "Remote door release functionality",
+      "Multi-unit and multi-building support",
+      "Integration with access control systems",
+      "Smartphone connectivity for remote answering",
+      "Vandal-resistant outdoor panels"
     ],
     benefits: [
-      "Immediate alerts to intrusion attempts",
-      "Deter burglars before they enter",
-      "Lower home insurance costs",
-      "Professional monitoring options",
-      "Peace of mind at all times"
+      "Screen visitors before granting access",
+      "Remote entry control from anywhere",
+      "Enhanced building security",
+      "Professional appearance for businesses",
+      "Convenient communication between areas"
     ],
     useCases: [
-      "Residential properties of all sizes",
-      "Commercial buildings and offices",
-      "Retail stores and warehouses",
-      "Schools and public buildings"
+      "Residential properties with gated entry",
+      "Apartment blocks and housing estates",
+      "Commercial offices and business parks",
+      "Schools and healthcare facilities"
     ],
-    whyApecon: "Apecon's alarm installations are tailored to your property's unique layout. We use only trusted, reliable equipment and offer optional 24/7 monitoring services to ensure rapid response when you need it most."
+    whyApecon: "Apecon designs and installs intercom systems that match your specific access control needs. Our solutions are scalable, reliable, and backed by professional support and maintenance services."
   },
   {
-    id: "network-connectivity",
-    title: "Network Connectivity Services",
+    id: "it-network-solution",
+    title: "IT NETWORK SOLUTION",
     shortDescription: "Professional network infrastructure setup including routers, switches, and Wi-Fi solutions.",
     description: "A robust network is the backbone of modern security systems. Apecon provides comprehensive network connectivity services, from structured cabling to enterprise-grade Wi-Fi solutions, ensuring your security devices and business operations run smoothly.",
     image: networkConnectivity,
@@ -135,130 +161,6 @@ export const services: Service[] = [
       "Multi-building business campuses"
     ],
     whyApecon: "Our network engineers design and install infrastructure that supports today's demands and tomorrow's growth. Apecon ensures your security systems have the reliable connectivity they need to function flawlessly."
-  },
-  {
-    id: "home-security",
-    title: "Home Security",
-    shortDescription: "Comprehensive home security camera systems with high resolution and remote monitoring for peace of mind.",
-    description: "Protect your family and property with our comprehensive home security camera systems. Our professional-grade solutions provide 24/7 surveillance with crystal-clear video quality, ensuring you always have eyes on what matters most.",
-    image: homeSecurity,
-    features: [
-      "High-definition 4K camera resolution",
-      "Advanced night vision technology",
-      "Remote access via smartphone app",
-      "Intelligent motion detection alerts",
-      "Flexible cloud and local storage",
-      "Weather-resistant outdoor cameras",
-      "Two-way audio communication",
-      "Smart home integration"
-    ],
-    benefits: [
-      "Peace of mind knowing your family is protected",
-      "Deter potential intruders with visible cameras",
-      "Monitor your property remotely",
-      "Reduce insurance premiums",
-      "Evidence collection in case of incidents"
-    ],
-    useCases: [
-      "Single-family homes",
-      "Apartments and flats",
-      "Holiday homes",
-      "Properties with gardens and outbuildings"
-    ],
-    whyApecon: "Apecon specialises in home security solutions that are tailored to your property and lifestyle. Our friendly engineers provide a thorough survey and install systems that offer complete coverage and ease of use."
-  },
-  {
-    id: "business-systems",
-    title: "Business Systems",
-    shortDescription: "Scalable security solutions designed for commercial properties, from small offices to large enterprises.",
-    description: "Robust, reliable, and scalable security solutions designed for commercial properties of all sizes. From small retail shops to large corporate offices, our business security systems are tailored to meet your specific operational needs.",
-    image: businessSecurity,
-    features: [
-      "Multi-site centralised monitoring",
-      "Access control integration",
-      "Employee activity monitoring",
-      "Advanced analytics and reporting",
-      "Scalable infrastructure",
-      "IT infrastructure integration",
-      "Point-of-sale monitoring",
-      "License plate recognition"
-    ],
-    benefits: [
-      "Reduce theft and shrinkage",
-      "Improve employee productivity",
-      "Ensure security compliance",
-      "Protect valuable assets",
-      "Enhanced customer and staff safety"
-    ],
-    useCases: [
-      "Retail stores and shopping centres",
-      "Office buildings",
-      "Warehouses and distribution centres",
-      "Manufacturing facilities"
-    ],
-    whyApecon: "We understand the unique security challenges facing UK businesses. Apecon designs systems that protect your assets, monitor operations, and scale with your growth—all backed by reliable local support."
-  },
-  {
-    id: "camera-systems",
-    title: "Camera Systems",
-    shortDescription: "State-of-the-art IP and analog cameras with high-definition video and remote monitoring capabilities.",
-    description: "State-of-the-art IP and analog camera systems offering high-definition video capture and advanced remote monitoring capabilities. We supply and install the latest technology from leading manufacturers.",
-    image: installation,
-    features: [
-      "Wide range of IP and analog cameras",
-      "Pan-Tilt-Zoom (PTZ) functionality",
-      "Ultra-wide angle coverage",
-      "Vandal-proof and weatherproof housings",
-      "Professional certified installation",
-      "Maintenance and support packages",
-      "Thermal imaging options",
-      "Facial recognition capabilities"
-    ],
-    benefits: [
-      "Maximum coverage with fewer cameras",
-      "Reliable all-weather operation",
-      "Long-lasting equipment with warranty",
-      "Future-proof technology",
-      "Expert camera placement guidance"
-    ],
-    useCases: [
-      "Commercial and industrial sites",
-      "Public spaces and car parks",
-      "Schools and universities",
-      "Healthcare facilities"
-    ],
-    whyApecon: "Apecon's certified engineers have years of experience installing camera systems across the UK. We recommend and install only trusted equipment, ensuring you get the best quality and value for your investment."
-  },
-  {
-    id: "monitoring",
-    title: "24/7 Monitoring",
-    shortDescription: "Round-the-clock Security Operations Center monitoring for complete peace of mind.",
-    description: "Our Security Operations Center provides round-the-clock monitoring services, ensuring your property is always protected. Our trained operators respond immediately to alerts, providing you with complete peace of mind.",
-    image: monitoringCenter,
-    features: [
-      "24/7 live monitoring",
-      "Instant alert response",
-      "Emergency services dispatch",
-      "Video verification of alarms",
-      "Dedicated support team",
-      "Regular security reports",
-      "Mobile app notifications",
-      "Police and emergency integration"
-    ],
-    benefits: [
-      "Never miss a security event",
-      "Professional response to every alert",
-      "Reduced false alarm fines",
-      "Faster emergency response",
-      "Regular security assessments"
-    ],
-    useCases: [
-      "High-value residential properties",
-      "Commercial premises",
-      "Vacant buildings",
-      "Construction sites"
-    ],
-    whyApecon: "Our UK-based monitoring centre is staffed by trained security professionals who know how to respond quickly and effectively. Apecon's monitoring service gives you true peace of mind, day and night."
   }
 ];
 
@@ -273,6 +175,14 @@ export const getServicesForNavbar = () => {
   }));
 };
 
-export const getServicesForPreview = (count: number = 4) => {
+export const getServicesForPreview = (count: number = 5) => {
   return services.slice(0, count);
 };
+
+export const serviceOptions = [
+  "ALARM",
+  "CCTV",
+  "VIDEO DOORBELL",
+  "INTERCOM",
+  "IT NETWORK SOLUTION"
+];

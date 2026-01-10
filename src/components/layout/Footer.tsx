@@ -9,13 +9,16 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div>
-            <Link to="/" className="inline-block mb-6">
+            <Link to="/" className="inline-block mb-4">
               <img 
                 src={apeconLogo} 
                 alt="Apecon Security" 
                 className="h-10 w-auto object-contain"
               />
             </Link>
+            <p className="text-sm text-muted-foreground font-medium mb-4">
+              Your Technology Partner
+            </p>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Professional security camera systems and monitoring solutions for homes and businesses across the UK.
             </p>
@@ -45,23 +48,23 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <Phone className="h-5 w-5 text-primary mt-0.5" />
                 <div>
-                  <a href="tel:03337723292" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    0333 772 3292
+                  <a href="tel:03337724575" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    0333 772 4575
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="h-5 w-5 text-primary mt-0.5" />
                 <div>
-                  <a href="mailto:contact@apecon.co.uk" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    contact@apecon.co.uk
+                  <a href="mailto:info@apecon.co.uk" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    info@apecon.co.uk
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary mt-0.5" />
                 <span className="text-sm text-muted-foreground">
-                  London, United Kingdom
+                  8 Shortheath Road, Birmingham, B23 6JP
                 </span>
               </li>
             </ul>
