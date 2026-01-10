@@ -26,7 +26,7 @@ const CTABanner = () => {
               <Phone className="h-6 w-6 text-primary-foreground" />
               <div className="text-left">
                 <div className="text-xs text-primary-foreground/70">Fast Communication</div>
-                <div className="text-lg font-bold text-primary-foreground">0333 772 3292</div>
+                <div className="text-lg font-bold text-primary-foreground">0333 772 4575</div>
               </div>
             </a>
 
