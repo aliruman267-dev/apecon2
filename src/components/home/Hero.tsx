@@ -84,7 +84,7 @@ const Hero = () => {
                 
               </div>
             </div>
-             <p className="text-lg md:text-xl font-medium text-white/90">
+             <p className="text-lg md:text-xl font-medium text-black/90">
                   Install Now – Pay Monthly Available
                 </p>
           </div>
