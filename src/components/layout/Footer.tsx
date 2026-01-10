@@ -16,7 +16,7 @@ const Footer = () => {
                 className="h-10 w-auto object-contain"
               />
             </Link>
-            <p className="text-sm text-muted-foreground font-medium mb-4">
+            <p className="text-sm text-success font-medium mb-4">
               Your Technology Partner
             </p>
             <p className="text-muted-foreground text-sm leading-relaxed">
