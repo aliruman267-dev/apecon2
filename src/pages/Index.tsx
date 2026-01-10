@@ -21,7 +21,7 @@ const Index = () => {
     <Layout>
       <Hero />
       <ServicesPreview />
-      <PropertyTypeSection onSelectProperty={handlePropertySelect} />
+      {/* <PropertyTypeSection onSelectProperty={handlePropertySelect} /> */}
       <WhyChooseUs />
       <ProcessSection />
       <CTABanner />
