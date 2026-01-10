@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getServicesForPreview } from "@/data/services";
 
-const services = getServicesForPreview(5);
+const services = getServicesForPreview(4);
 
 const ServicesPreview = () => {
   return (
