@@ -19,159 +19,178 @@ export interface Service {
 export const services: Service[] = [
   {
     id: "alarm",
-    title: "ALARM",
-    shortDescription: "Reliable wireless and wired alarm systems to protect your home or business from intruders.",
-    description: "Protect your property with our professional intruder alarm systems. We offer both wireless and wired configurations to suit any building type, from modern smart homes to traditional properties. Our alarms are designed for reliability and rapid response.",
+    title: "ALARM (WIRELESS & WIRED)",
+    shortDescription:
+      "Intruder alarm systems designed around your property, with reliable wireless or hardwired options.",
+    description:
+      "A good alarm system should fit your building—not the other way around. We install wireless and wired intruder alarms for homes and businesses, using proven sensors for doors, windows, and internal areas. Whether you need a simple setup or a fully monitored solution, we’ll design it for the layout of your property and make sure it’s easy to use day-to-day.",
     image: alarmKeypad,
     features: [
-      "Wireless and wired sensor options",
-      "Door, window, and motion sensors",
-      "Smartphone app control and alerts",
-      "24/7 monitoring service available",
-      "Battery backup for power outages",
-      "Pet-friendly sensor options"
+      "Wireless and wired alarm configurations",
+      "Door, window, and PIR motion sensors",
+      "Loud internal siren and optional external sounder",
+      "Smart app alerts and arming/disarming (where supported)",
+      "Battery backup to keep the system running during outages",
+      "Optional 24/7 monitoring and response integration",
     ],
     benefits: [
-      "Immediate alerts to intrusion attempts",
-      "Deter burglars before they enter",
-      "Lower home insurance costs",
-      "Professional monitoring options",
-      "Peace of mind at all times"
+      "Early warning before an intruder gets far",
+      "Visible deterrent that reduces risk",
+      "Simple daily use for families and staff",
+      "Better protection for vulnerable entry points",
+      "Confidence when you’re asleep or away",
     ],
     useCases: [
-      "Residential properties of all sizes",
-      "Commercial buildings and offices",
-      "Retail stores and warehouses",
-      "Schools and public buildings"
+      "Houses, apartments, and villas",
+      "Shops, offices, and small businesses",
+      "Warehouses and storage units",
+      "Schools, clinics, and community buildings",
     ],
-    whyApecon: "Apecon's alarm installations are tailored to your property's unique layout. We use only trusted, reliable equipment and offer optional 24/7 monitoring services to ensure rapid response when you need it most."
+    whyApecon:
+      "We don’t do one-size-fits-all. Apecon surveys your property, recommends the right mix of sensors, and installs cleanly with a focus on reliability. After installation, we test everything with you and make sure you know exactly how to use it.",
   },
+
   {
     id: "cctv",
-    title: "CCTV",
-    shortDescription: "Professional CCTV systems with flexible wireless and wired options for complete property surveillance.",
-    description: "Keep your property under constant watch with our professional-grade CCTV systems. We offer both wireless and wired solutions, tailored to your specific requirements, ensuring reliable coverage and crystal-clear footage day and night.",
+    title: "CCTV (WIRELESS & WIRED)",
+    shortDescription:
+      "Professional CCTV systems with clear day/night video and remote viewing—available in wireless or wired setups.",
+    description:
+      "CCTV is only useful when it records what you actually need to see. We install wireless and wired camera systems for homes and commercial sites, focusing on the right camera positions, correct angles, and dependable recording. You’ll be able to view your cameras remotely, and we’ll advise the best storage option—NVR/DVR or cloud—based on your site and internet reliability.",
     image: cctvCamera,
     features: [
-      "HD & 4K camera resolution options",
-      "Wireless and hardwired installation choices",
-      "Night vision with infrared technology",
-      "Remote viewing via smartphone and tablet",
-      "Motion-activated recording and alerts",
-      "Cloud and local NVR storage options"
+      "Wireless and hardwired camera options",
+      "HD / 4K camera choices depending on coverage needs",
+      "Night vision for low-light and dark areas",
+      "Mobile app remote viewing and playback",
+      "Motion detection recording with alert options",
+      "NVR/DVR storage and cloud options (site dependent)",
     ],
     benefits: [
-      "Deter criminal activity with visible cameras",
-      "24/7 monitoring of your premises",
-      "Evidence collection for incidents",
-      "Remote access from anywhere in the world",
-      "Reduced insurance premiums"
+      "Deters theft and unwanted activity",
+      "Creates strong evidence if an incident happens",
+      "Helps monitor entrances, parking, and blind spots",
+      "Remote access anytime from your phone",
+      "Improves safety for staff and family",
     ],
     useCases: [
-      "Residential homes and apartments",
-      "Retail shops and commercial premises",
-      "Warehouses and industrial sites",
-      "Office buildings and car parks"
+      "Residential properties and apartment buildings",
+      "Retail shops and showrooms",
+      "Warehouses, factories, and yards",
+      "Offices, reception areas, and car parks",
     ],
-    whyApecon: "Apecon provides expert CCTV installation with a focus on optimal camera placement and system reliability. Our engineers ensure you get maximum coverage with minimum equipment, backed by ongoing support and maintenance."
+    whyApecon:
+      "We plan CCTV properly—camera placement, recording setup, and network stability. You get a tidy installation, clear guidance on using the app, and support if you ever want to expand the system later.",
   },
+
   {
     id: "video-doorbell",
     title: "VIDEO DOORBELL",
-    shortDescription: "Smart video doorbells that let you see and speak to visitors from anywhere using your smartphone.",
-    description: "Never miss a visitor again with our smart video doorbell solutions. See, hear, and speak to anyone at your door from your smartphone, whether you're at home, at work, or on holiday. Our systems integrate seamlessly with your existing security setup.",
+    shortDescription:
+      "See and speak to visitors from your phone, with motion alerts and recording for your doorstep.",
+    description:
+      "A video doorbell gives you control even when you’re not home. We install and configure smart video doorbells so they work smoothly with your Wi-Fi and deliver fast notifications. Whether it’s deliveries, guests, or unexpected callers, you can answer through your phone and keep a record of activity at the entrance.",
     image: videoDoorbell,
     features: [
-      "HD video with wide-angle lens",
-      "Two-way audio communication",
-      "Motion detection with instant alerts",
-      "Night vision for 24/7 visibility",
-      "Cloud recording and playback",
-      "Integration with smart home systems"
+      "HD video with wide viewing angle",
+      "Two-way audio so you can speak to visitors",
+      "Motion detection with instant notifications",
+      "Night vision for round-the-clock visibility",
+      "Recording and playback options (cloud/device dependent)",
+      "Can be paired with chimes and smart home devices (where compatible)",
     ],
     benefits: [
-      "Answer your door from anywhere",
-      "Deter package thieves and intruders",
-      "Record all doorstep activity",
-      "Peace of mind when away from home",
-      "Easy installation and setup"
+      "Answer the door from anywhere",
+      "Reduces doorstep theft and suspicious activity",
+      "Helps manage deliveries more safely",
+      "Useful for families, elderly relatives, and busy homes",
+      "Quick visibility before opening the door",
     ],
     useCases: [
-      "Family homes and flats",
+      "Homes, flats, and gated residences",
       "Rental properties and Airbnb",
-      "Small businesses and offices",
-      "Elderly relatives' homes"
+      "Small offices and private entrances",
+      "Family households with frequent deliveries",
     ],
-    whyApecon: "We install and configure video doorbells that work perfectly with your home Wi-Fi and existing security systems. Apecon ensures reliable connectivity and provides full training on how to use your new device."
+    whyApecon:
+      "We make sure the doorbell is installed correctly, connected properly, and positioned for the best view. We also help you set up notifications and show you how to use the app so it’s simple from day one.",
   },
+
   {
     id: "intercom",
     title: "INTERCOM",
-    shortDescription: "Modern audio and video intercom systems for secure entry control at homes and commercial buildings.",
-    description: "Control access to your property with our professional intercom systems. From simple audio intercoms to advanced video entry systems with remote unlock capabilities, we provide solutions that enhance security while adding convenience.",
+    shortDescription:
+      "Audio and video intercom systems for secure entry control in homes, apartments, and commercial sites.",
+    description:
+      "Intercoms make access control simple and secure. From basic audio systems to full video entry with multiple indoor stations, we install intercom solutions that suit the building and usage. The goal is clear communication, controlled entry, and a setup that lasts—especially for high-traffic entrances.",
     image: intercomSystem,
     features: [
       "Audio and video intercom options",
-      "Remote door release functionality",
-      "Multi-unit and multi-building support",
-      "Integration with access control systems",
-      "Smartphone connectivity for remote answering",
-      "Vandal-resistant outdoor panels"
+      "Indoor monitor stations and outdoor door panels",
+      "Remote door/gate release (system dependent)",
+      "Multi-unit support for apartments and offices",
+      "Weather-resistant and vandal-resistant outdoor options",
+      "Can integrate with access control in larger setups",
     ],
     benefits: [
-      "Screen visitors before granting access",
-      "Remote entry control from anywhere",
-      "Enhanced building security",
-      "Professional appearance for businesses",
-      "Convenient communication between areas"
+      "Screen visitors before allowing entry",
+      "Improves security at shared entrances",
+      "Convenient for families and staff",
+      "Adds professionalism to commercial buildings",
+      "Reduces unwanted access and tailgating risk",
     ],
     useCases: [
-      "Residential properties with gated entry",
-      "Apartment blocks and housing estates",
-      "Commercial offices and business parks",
-      "Schools and healthcare facilities"
+      "Villas and houses with gates",
+      "Apartment buildings and shared entrances",
+      "Office receptions and business centers",
+      "Clinics, schools, and managed properties",
     ],
-    whyApecon: "Apecon designs and installs intercom systems that match your specific access control needs. Our solutions are scalable, reliable, and backed by professional support and maintenance services."
+    whyApecon:
+      "Apecon helps you choose an intercom that matches your entry points and daily flow, then installs it cleanly with proper testing. We focus on reliability—clear audio, strong video, and dependable door release where required.",
   },
+
   {
-    id: "it-network-solution",
-    title: "IT NETWORK SOLUTION",
-    shortDescription: "Professional network infrastructure setup including routers, switches, and Wi-Fi solutions.",
-    description: "A robust network is the backbone of modern security systems. Apecon provides comprehensive network connectivity services, from structured cabling to enterprise-grade Wi-Fi solutions, ensuring your security devices and business operations run smoothly.",
+    id: "network-connectivity",
+    title: "NETWORK CONNECTIVITY SERVICES",
+    shortDescription:
+      "Reliable networking for security systems and businesses—Wi-Fi, cabling, switches, routers, and troubleshooting.",
+    description:
+      "Most security issues start with weak connectivity. We provide network connectivity services that keep CCTV, doorbells, alarms, and business devices running smoothly. From structured cabling and PoE to Wi-Fi coverage improvements, we build stable networks that don’t drop out when you need them most.",
     image: networkConnectivity,
     features: [
-      "Structured cabling and network design",
-      "Enterprise-grade router and switch installation",
-      "Mesh Wi-Fi for full property coverage",
-      "Network security and firewall setup",
-      "PoE (Power over Ethernet) solutions",
-      "Network monitoring and maintenance"
+      "Network assessment and coverage planning",
+      "Structured cabling and clean cable management",
+      "Router, switch, and access point installation",
+      "Wi-Fi improvement and dead-spot fixing (mesh where needed)",
+      "PoE setup for cameras and network devices",
+      "Basic network security setup (passwords, segmentation, firewall where applicable)",
     ],
     benefits: [
-      "Reliable connectivity for all devices",
-      "Seamless security system integration",
-      "Future-proof infrastructure",
-      "Improved business productivity",
-      "Expert troubleshooting and support"
+      "Stable performance for CCTV and smart security devices",
+      "Better Wi-Fi coverage across the property",
+      "Reduced downtime and fewer random disconnects",
+      "Cleaner installations with proper cabling",
+      "Easier future expansion when you add more devices",
     ],
     useCases: [
-      "Offices requiring reliable internet",
-      "Homes with smart security systems",
-      "Warehouses and large commercial spaces",
-      "Multi-building business campuses"
+      "Homes with smart security and multiple devices",
+      "Offices that need reliable connectivity",
+      "Sites running IP cameras and PoE systems",
+      "Warehouses and larger properties needing strong coverage",
     ],
-    whyApecon: "Our network engineers design and install infrastructure that supports today's demands and tomorrow's growth. Apecon ensures your security systems have the reliable connectivity they need to function flawlessly."
-  }
+    whyApecon:
+      "We don’t just ‘add another router’. Apecon designs the network properly so your security systems stay online and perform reliably. You’ll get a tidy install, clear documentation, and support for future upgrades.",
+  },
 ];
 
 export const getServiceById = (id: string): Service | undefined => {
-  return services.find(service => service.id === id);
+  return services.find((service) => service.id === id);
 };
 
 export const getServicesForNavbar = () => {
-  return services.map(service => ({
+  return services.map((service) => ({
     name: service.title,
-    path: `/services/${service.id}`
+    path: `/services/${service.id}`,
   }));
 };
 
@@ -180,9 +199,9 @@ export const getServicesForPreview = (count: number = 5) => {
 };
 
 export const serviceOptions = [
-  "ALARM",
-  "CCTV",
+  "ALARM (WIRELESS & WIRED)",
+  "CCTV (WIRELESS & WIRED)",
   "VIDEO DOORBELL",
   "INTERCOM",
-  "IT NETWORK SOLUTION"
+  "NETWORK CONNECTIVITY SERVICES",
 ];
