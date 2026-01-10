@@ -63,9 +63,9 @@ const Hero = () => {
                 <h2 className="text-2xl md:text-3xl font-display font-bold mb-2">
                   CCTV & Intruder Alarm
                 </h2>
-                <p className="text-lg md:text-xl font-medium text-white/90">
+                {/* <p className="text-lg md:text-xl font-medium text-white/90">
                   Install Now – Pay Monthly Available
-                </p>
+                </p> */}
               </div>
             </div>
             
@@ -81,8 +81,12 @@ const Hero = () => {
                     0333 772 4575
                   </a>
                 </div>
+                
               </div>
             </div>
+             <p className="text-lg md:text-xl font-medium text-white/90">
+                  Install Now – Pay Monthly Available
+                </p>
           </div>
         </div>
       </div>
