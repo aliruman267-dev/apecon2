@@ -141,10 +141,10 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Phone</h4>
                     <a 
-                      href="tel:03337723292" 
+                      href="tel:03337724575" 
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      0333 772 3292
+                      0333 772 4575
                     </a>
                   </div>
                 </div>
@@ -156,10 +156,10 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Email</h4>
                     <a 
-                      href="mailto:contact@apecon.co.uk" 
+                      href="mailto:info@apecon.co.uk" 
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      contact@apecon.co.uk
+                      info@apecon.co.uk
                     </a>
                   </div>
                 </div>
@@ -171,7 +171,7 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Address</h4>
                     <p className="text-muted-foreground">
-                      London, United Kingdom
+                      8 Shortheath Road, Birmingham, B23 6JP
                     </p>
                   </div>
                 </div>
