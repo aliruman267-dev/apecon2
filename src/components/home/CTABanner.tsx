@@ -31,13 +31,13 @@ const CTABanner = () => {
             </a>
 
             <a 
-              href="mailto:contact@apecon.co.uk" 
+              href="mailto:info@apecon.co.uk" 
               className="flex items-center gap-3 bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors rounded-lg px-6 py-4"
             >
               <Mail className="h-6 w-6 text-primary-foreground" />
               <div className="text-left">
                 <div className="text-xs text-primary-foreground/70">Get A Quick Quote</div>
-                <div className="text-lg font-bold text-primary-foreground">contact@apecon.co.uk</div>
+                <div className="text-lg font-bold text-primary-foreground">info@apecon.co.uk</div>
               </div>
             </a>
 
