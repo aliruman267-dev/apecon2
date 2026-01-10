@@ -40,7 +40,7 @@ const Navbar = () => {
                 alt="Apecon Security" 
                 className="h-10 md:h-12 w-auto object-contain"
               />
-              <span className="text-xs md:text-sm text-muted-foreground font-medium mt-0.5">
+              <span className="text-xs md:text-sm text-success font-medium mt-0.5">
                 Your Technology Partner
               </span>
             </Link>
