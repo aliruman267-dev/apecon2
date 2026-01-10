@@ -10,6 +10,7 @@
 
 @layer base {
   :root {
+    --success: 118 61% 49%;
     --background: 0 0% 100%;
     --foreground: 215 25% 15%;
 
@@ -48,6 +49,7 @@
   }
 
   .dark {
+    --success: 118 61% 49%;
     --background: 215 25% 10%;
     --foreground: 210 20% 96%;
 
