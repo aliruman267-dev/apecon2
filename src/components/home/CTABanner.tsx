@@ -20,7 +20,7 @@ const CTABanner = () => {
           {/* Actions */}
           <div className="flex flex-col sm:flex-row items-center gap-6">
             <a 
-              href="tel:03337723292" 
+              href="tel:03337724575" 
               className="flex items-center gap-3 bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors rounded-lg px-6 py-4"
             >
               <Phone className="h-6 w-6 text-primary-foreground" />
