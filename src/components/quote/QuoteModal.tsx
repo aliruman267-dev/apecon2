@@ -13,6 +13,8 @@ interface QuoteModalProps {
   initialType?: "residential" | "commercial" | null;
 }
 
+const WEB3FORMS_KEY = "f7711d56-154a-42ad-b411-1b675254972f";
+
 const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) => {
   const { toast } = useToast();
   const [step, setStep] = useState<"select" | "form">(initialType ? "form" : "select");
@@ -34,6 +36,8 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
     businessName: "",
     premisesType: "",
     numberOfSites: "",
+    // ✅ honeypot
+    website: "",
   });
 
   useEffect(() => {
@@ -47,18 +51,21 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
     if (!isOpen) {
       setStep(initialType ? "form" : "select");
       setQuoteType(initialType);
+      setServiceDropdownOpen(false);
     }
   }, [isOpen, initialType]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
   const handleServiceSelect = (service: string) => {
-    setFormData(prev => ({ ...prev, service }));
+    setFormData((prev) => ({ ...prev, service }));
     setServiceDropdownOpen(false);
   };
 
@@ -67,31 +74,97 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
     setStep("form");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const resetForm = () => {
+    setFormData({
+      fullName: "",
+      mobile: "",
+      email: "",
+      service: "",
+      message: "",
+      propertyType: "",
+      bedrooms: "",
+      postcode: "",
+      businessName: "",
+      premisesType: "",
+      numberOfSites: "",
+      website: "",
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // ✅ bot trap
+    if (formData.website?.trim()) return;
+
+    // ✅ service is marked required in UI, enforce it
+    if (!formData.service?.trim()) {
+      toast({
+        title: "Service Required",
+        description: "Please select a service to continue.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
-    
-    setTimeout(() => {
+
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const payload: Record<string, any> = {
+        access_key: WEB3FORMS_KEY,
+        subject:
+          quoteType === "residential" ? "Residential Quote Request - Apecon" : "Commercial Quote Request - Apecon",
+        from_name: "Apecon Website",
+        form_type: "quote",
+        quote_type: quoteType ?? "",
+        fullName: formData.fullName,
+        mobile: formData.mobile,
+        email: formData.email || "",
+        service: formData.service,
+        message: formData.message || "",
+        postcode: formData.postcode,
+      };
+
+      if (quoteType === "residential") {
+        payload.propertyType = formData.propertyType;
+        payload.bedrooms = formData.bedrooms;
+      }
+
+      if (quoteType === "commercial") {
+        payload.businessName = formData.businessName;
+        payload.premisesType = formData.premisesType;
+        payload.numberOfSites = formData.numberOfSites;
+      }
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data?.success) {
+        throw new Error(data?.message || "Failed to submit. Please try again.");
+      }
+
       toast({
         title: "Quote Request Received!",
         description: "We'll get back to you within 24 hours.",
       });
-      setFormData({
-        fullName: "",
-        mobile: "",
-        email: "",
-        service: "",
-        message: "",
-        propertyType: "",
-        bedrooms: "",
-        postcode: "",
-        businessName: "",
-        premisesType: "",
-        numberOfSites: "",
-      });
-      setIsSubmitting(false);
+
+      resetForm();
       onClose();
-    }, 1000);
+    } catch (err) {
+      toast({
+        title: "Submission failed",
+        description: err?.message || "Please try again or call us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -100,7 +173,7 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
       <div className="absolute inset-0 bg-foreground/50 backdrop-blur-sm" onClick={onClose} />
-      
+
       {/* Modal */}
       <div className="relative bg-background rounded-2xl shadow-2xl w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
         {/* Header */}
@@ -108,10 +181,7 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
           <h2 className="text-xl font-display font-bold text-foreground">
             {step === "select" ? "Get a Quote" : quoteType === "residential" ? "Residential Quote" : "Commercial Quote"}
           </h2>
-          <button 
-            onClick={onClose}
-            className="p-2 hover:bg-muted rounded-full transition-colors"
-          >
+          <button onClick={onClose} className="p-2 hover:bg-muted rounded-full transition-colors">
             <X className="h-5 w-5" />
           </button>
         </div>
@@ -149,6 +219,17 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
           ) : (
             /* Quote Form */
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* ✅ hidden honeypot (no UI change) */}
+              <input
+                type="text"
+                name="website"
+                value={formData.website}
+                onChange={handleChange}
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+
               {/* Common Fields */}
               <div className="space-y-2">
                 <Label htmlFor="fullName">Full Name *</Label>
@@ -199,7 +280,9 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
                     <span className={formData.service ? "text-foreground" : "text-muted-foreground"}>
                       {formData.service || "Select a service"}
                     </span>
-                    <ChevronDown className={`h-4 w-4 transition-transform ${serviceDropdownOpen ? "rotate-180" : ""}`} />
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform ${serviceDropdownOpen ? "rotate-180" : ""}`}
+                    />
                   </button>
                   {serviceDropdownOpen && (
                     <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-lg shadow-lg z-10">
