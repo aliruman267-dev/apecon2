@@ -8,36 +8,85 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import monitoringCenter from "@/assets/monitoring-center.jpg";
 
+const WEB3FORMS_KEY = "f7711d56-154a-42ad-b411-1b675254972f";
+
 const Contact = () => {
   const { toast } = useToast();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
+    // ✅ honeypot (bots fill this)
+    website: "",
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // ✅ simple bot protection: if honeypot filled, silently stop
+    if (formData.website?.trim()) return;
+
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+
+    try {
+      const payload = {
+        access_key: WEB3FORMS_KEY,
+        subject: "New Contact Enquiry - Apecon",
+        from_name: "Apecon Website",
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+      };
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data?.success) {
+        throw new Error(data?.message || "Failed to send. Please try again.");
+      }
+
       toast({
         title: "Message Sent!",
         description: "Thank you for your enquiry. We'll be in touch shortly.",
       });
-      setFormData({ name: "", email: "", phone: "", message: "" });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+        website: "",
+      });
+    } catch (err) {
+      toast({
+        title: "Sending failed",
+        description:
+          err?.message ||
+          "Something went wrong. Please try again or call us directly.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -63,7 +112,19 @@ const Contact = () => {
               <h2 className="text-2xl font-display font-bold text-foreground mb-6">
                 Send Us a Message
               </h2>
+
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* ✅ Honeypot field (hidden) */}
+                <input
+                  type="text"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">Full Name</Label>
@@ -76,6 +137,7 @@ const Contact = () => {
                       required
                     />
                   </div>
+
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number</Label>
                     <Input
@@ -89,6 +151,7 @@ const Contact = () => {
                     />
                   </div>
                 </div>
+
                 <div className="space-y-2">
                   <Label htmlFor="email">Email Address</Label>
                   <Input
@@ -101,6 +164,7 @@ const Contact = () => {
                     required
                   />
                 </div>
+
                 <div className="space-y-2">
                   <Label htmlFor="message">Your Message</Label>
                   <Textarea
@@ -113,16 +177,22 @@ const Contact = () => {
                     required
                   />
                 </div>
+
                 <Button type="submit" variant="hero" size="lg" disabled={isSubmitting}>
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
+
+                {/* Optional helper text */}
+                <p className="text-sm text-muted-foreground">
+                  By submitting this form, you agree to be contacted about your enquiry.
+                </p>
               </form>
             </div>
 
             {/* Contact Info */}
             <div>
               <div className="rounded-2xl overflow-hidden mb-8">
-                <img 
+                <img
                   src={monitoringCenter}
                   alt="Security monitoring center"
                   className="w-full h-64 object-cover"
@@ -140,8 +210,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Phone</h4>
-                    <a 
-                      href="tel:03337724575" 
+                    <a
+                      href="tel:03337724575"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
                       0333 772 4575
@@ -155,8 +225,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Email</h4>
-                    <a 
-                      href="mailto:info@apecon.co.uk" 
+                    <a
+                      href="mailto:info@apecon.co.uk"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
                       info@apecon.co.uk
@@ -183,8 +253,10 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Working Hours</h4>
                     <p className="text-muted-foreground">
-                      Monday - Friday: 9:00 AM - 6:00 PM<br />
-                      Saturday: 10:00 AM - 4:00 PM<br />
+                      Monday - Friday: 9:00 AM - 6:00 PM
+                      <br />
+                      Saturday: 10:00 AM - 4:00 PM
+                      <br />
                       <span className="text-accent font-medium">24/7 Emergency Support</span>
                     </p>
                   </div>
