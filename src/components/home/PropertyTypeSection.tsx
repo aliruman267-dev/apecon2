@@ -10,33 +10,70 @@ interface PropertyTypeSectionProps {
   onSelectProperty: (type: "residential" | "commercial") => void;
 }
 
+const WEB3FORMS_KEY = "f7711d56-154a-42ad-b411-1b675254972f";
+
 const PropertyTypeSection = ({ onSelectProperty }: PropertyTypeSectionProps) => {
   const { toast } = useToast();
   const [callbackForm, setCallbackForm] = useState({
     name: "",
-    mobile: ""
+    mobile: "",
+    // ✅ honeypot
+    website: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCallbackForm(prev => ({
+    setCallbackForm((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
-  const handleCallbackSubmit = (e: React.FormEvent) => {
+  const handleCallbackSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // ✅ bot trap
+    if (callbackForm.website?.trim()) return;
+
     setIsSubmitting(true);
-    
-    setTimeout(() => {
+
+    try {
+      const payload = {
+        access_key: WEB3FORMS_KEY,
+        subject: "Callback Request - Apecon",
+        from_name: "Apecon Website",
+        form_type: "callback",
+        name: callbackForm.name,
+        mobile: callbackForm.mobile,
+      };
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data?.success) {
+        throw new Error(data?.message || "Failed to submit. Please try again.");
+      }
+
       toast({
         title: "Request Received!",
         description: "We'll call you back shortly.",
       });
-      setCallbackForm({ name: "", mobile: "" });
+
+      setCallbackForm({ name: "", mobile: "", website: "" });
+    } catch (err) {
+      toast({
+        title: "Submission failed",
+        description: err?.message || "Please try again or call us directly.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -58,7 +95,7 @@ const PropertyTypeSection = ({ onSelectProperty }: PropertyTypeSectionProps) => 
             onClick={() => onSelectProperty("residential")}
             className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary/20"
           >
-            <img 
+            <img
               src={houseSecurity}
               alt="House Security"
               className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
@@ -75,7 +112,7 @@ const PropertyTypeSection = ({ onSelectProperty }: PropertyTypeSectionProps) => 
             onClick={() => onSelectProperty("commercial")}
             className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary/20"
           >
-            <img 
+            <img
               src={shopSecurity}
               alt="Business Security"
               className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
@@ -95,6 +132,17 @@ const PropertyTypeSection = ({ onSelectProperty }: PropertyTypeSectionProps) => 
               Request a Call Back
             </h3>
             <form onSubmit={handleCallbackSubmit} className="space-y-4">
+              {/* ✅ hidden honeypot (no UI change) */}
+              <input
+                type="text"
+                name="website"
+                value={callbackForm.website}
+                onChange={handleChange}
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+
               <div className="space-y-2">
                 <Label htmlFor="callback-name">Name *</Label>
                 <Input
