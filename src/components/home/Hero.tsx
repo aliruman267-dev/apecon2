@@ -84,9 +84,29 @@ const Hero = () => {
                 
               </div>
             </div>
-   <p className="text-lg md:text-xl font-medium text-black/90 text-right mt-4">
-                  Install Now – Pay Monthly Available
-                </p>
+   <div className="mt-5 flex justify-end">
+  <div className="relative inline-flex items-center">
+    {/* glow */}
+    <div className="absolute -inset-2 rounded-2xl animate-pulse" />
+
+    {/* sticker body */}
+    <div className="relative flex items-center gap-3 rounded-2xl bg-gradient-to-br from-primary to-primary/80 px-5 py-3 shadow-[0_15px_40px_rgba(0,0,0,0.35)] ring-1 ring-white/25">
+
+      {/* text */}
+      <div className="leading-tight">
+       
+        <p className="text-sm md:text-base font-extrabold text-white whitespace-nowrap">
+          Install Now – Pay Monthly Available
+        </p>
+      </div>
+
+      {/* shine sweep */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
+        <div className="absolute -left-full top-0 h-full w-full bg-gradient-to-r from-transparent via-white/25 to-transparent animate-[shine_3s_infinite]" />
+      </div>
+    </div>
+  </div>
+</div>
           </div>
         </div>
       </div>
