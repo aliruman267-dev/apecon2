@@ -99,7 +99,7 @@ const FAQ = () => {
                 <Link to="/contact">Contact Us</Link>
               </Button>
               <Button variant="outline" asChild>
-                <a href="tel:03337723292">Call 0333 772 3292</a>
+                <a href="tel:03337724575">Call 0333 772 3292</a>
               </Button>
             </div>
           </div>
