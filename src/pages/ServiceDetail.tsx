@@ -113,7 +113,7 @@ const ServiceDetail = () => {
                   <Link to="/contact">Get a Quote</Link>
                 </Button>
                 <Button variant="outline" className="w-full" asChild>
-                  <a href="tel:03337723292">Call 0333 772 3292</a>
+                  <a href="tel:03337724575">Call 0333 772 3292</a>
                 </Button>
 
                 <div className="mt-6 pt-6 border-t border-border">
