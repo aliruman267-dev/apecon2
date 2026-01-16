@@ -28,8 +28,6 @@ const Navbar = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
-  // ✅ Premium banner content
-  const bannerCenter = "Securing Homes & Businesses with Confidence";
 
   return (
     <>
@@ -189,35 +187,6 @@ const Navbar = () => {
           )}
         </div>
 
-
-          {/* ✅ Premium Top Banner (Tailwind only) */}
-        {!isOpen && (
-          <div className="border-b border-border/60 bg-gradient-to-r from-muted/30 via-muted/50 to-muted/30">
-            <div className="container mx-auto px-4">
-              <div className="flex h-10 items-center justify-between gap-3">
-               
-
-                <div className="flex flex-1 items-center justify-center">
-  <div className="inline-flex items-center gap-2 text-xs md:text-sm text-muted-foreground">
-    
-    {/* ❌ Hide on mobile */}
-    <span className="hidden sm:inline font-medium">
-      {bannerCenter}
-    </span>
-
-    {/* ✅ Visible on all, but styled for md+ */}
-    <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-600 font-semibold">
-      Since 2017
-    </span>
-
-  </div>
-</div>
-
- 
-              </div>
-            </div>
-          </div>
-        )}
       </nav>
 
       {/* Quote Modal */}
