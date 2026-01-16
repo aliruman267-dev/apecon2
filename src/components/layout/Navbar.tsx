@@ -17,10 +17,10 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { 
-      name: "Services", 
+    {
+      name: "Services",
       path: "/services",
-      dropdown: serviceLinks
+      dropdown: serviceLinks,
     },
     { name: "FAQ", path: "/faq" },
     { name: "Contact", path: "/contact" },
@@ -28,16 +28,21 @@ const Navbar = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  // ✅ Premium banner content
+  const bannerCenter = "Securing Homes & Businesses with Confidence";
+
   return (
     <>
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md nav-shadow">
+      
+
         <div className="container mx-auto px-4">
           <div className="flex h-20 items-center justify-between">
             {/* Logo with Slogan */}
             <Link to="/" className="flex flex-col items-start">
-              <img 
-                src={apeconLogo} 
-                alt="Apecon Security" 
+              <img
+                src={apeconLogo}
+                alt="Apecon Security"
                 className="h-10 md:h-12 w-auto object-contain"
               />
               <span className="text-xs md:text-sm text-success font-medium mt-0.5">
@@ -50,9 +55,11 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <div key={link.name} className="relative group">
                   {link.dropdown ? (
-                    <button 
+                    <button
                       className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary ${
-                        isActive(link.path) ? "text-primary" : "text-muted-foreground"
+                        isActive(link.path)
+                          ? "text-primary"
+                          : "text-muted-foreground"
                       }`}
                       onMouseEnter={() => setServicesOpen(true)}
                       onMouseLeave={() => setServicesOpen(false)}
@@ -64,7 +71,9 @@ const Navbar = () => {
                     <Link
                       to={link.path}
                       className={`text-sm font-medium transition-colors hover:text-primary ${
-                        isActive(link.path) ? "text-primary" : "text-muted-foreground"
+                        isActive(link.path)
+                          ? "text-primary"
+                          : "text-muted-foreground"
                       }`}
                     >
                       {link.name}
@@ -73,9 +82,11 @@ const Navbar = () => {
 
                   {/* Dropdown */}
                   {link.dropdown && (
-                    <div 
+                    <div
                       className={`absolute top-full left-0 pt-2 transition-all duration-200 ${
-                        servicesOpen ? "opacity-100 visible" : "opacity-0 invisible"
+                        servicesOpen
+                          ? "opacity-100 visible"
+                          : "opacity-0 invisible"
                       }`}
                       onMouseEnter={() => setServicesOpen(true)}
                       onMouseLeave={() => setServicesOpen(false)}
@@ -99,7 +110,10 @@ const Navbar = () => {
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center gap-4">
-              <a href="tel:03337724575" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="tel:03337724575"
+                className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Phone className="h-4 w-4" />
                 0333 772 4575
               </a>
@@ -127,7 +141,9 @@ const Navbar = () => {
                     <Link
                       to={link.path}
                       className={`block text-base font-medium transition-colors hover:text-primary ${
-                        isActive(link.path) ? "text-primary" : "text-muted-foreground"
+                        isActive(link.path)
+                          ? "text-primary"
+                          : "text-muted-foreground"
                       }`}
                       onClick={() => setIsOpen(false)}
                     >
@@ -150,13 +166,16 @@ const Navbar = () => {
                   </div>
                 ))}
                 <div className="pt-4 border-t border-border">
-                  <a href="tel:03337724575" className="flex items-center gap-2 text-sm font-medium text-muted-foreground mb-4">
+                  <a
+                    href="tel:03337724575"
+                    className="flex items-center gap-2 text-sm font-medium text-muted-foreground mb-4"
+                  >
                     <Phone className="h-4 w-4" />
                     0333 772 4575
                   </a>
-                  <Button 
-                    variant="hero" 
-                    className="w-full" 
+                  <Button
+                    variant="hero"
+                    className="w-full"
                     onClick={() => {
                       setIsOpen(false);
                       setQuoteModalOpen(true);
@@ -169,12 +188,42 @@ const Navbar = () => {
             </div>
           )}
         </div>
+
+
+          {/* ✅ Premium Top Banner (Tailwind only) */}
+        {!isOpen && (
+          <div className="border-b border-border/60 bg-gradient-to-r from-muted/30 via-muted/50 to-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="flex h-10 items-center justify-between gap-3">
+               
+
+                <div className="flex flex-1 items-center justify-center">
+  <div className="inline-flex items-center gap-2 text-xs md:text-sm text-muted-foreground">
+    
+    {/* ❌ Hide on mobile */}
+    <span className="hidden sm:inline font-medium">
+      {bannerCenter}
+    </span>
+
+    {/* ✅ Visible on all, but styled for md+ */}
+    <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-600 font-semibold">
+      Since 2017
+    </span>
+
+  </div>
+</div>
+
+ 
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Quote Modal */}
-      <QuoteModal 
-        isOpen={quoteModalOpen} 
-        onClose={() => setQuoteModalOpen(false)} 
+      <QuoteModal
+        isOpen={quoteModalOpen}
+        onClose={() => setQuoteModalOpen(false)}
       />
     </>
   );
