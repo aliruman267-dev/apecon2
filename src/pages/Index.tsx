@@ -7,6 +7,8 @@ import WhyChooseUs from "@/components/home/WhyChooseUs";
 import ProcessSection from "@/components/home/ProcessSection";
 import CTABanner from "@/components/home/CTABanner";
 import QuoteModal from "@/components/quote/QuoteModal";
+import EstablishedBanner from "@/components/home/EstablishedBanner";
+
 
 const Index = () => {
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
@@ -20,6 +22,7 @@ const Index = () => {
   return (
     <Layout>
       <Hero />
+       <EstablishedBanner />
       <ServicesPreview />
       {/* <PropertyTypeSection onSelectProperty={handlePropertySelect} /> */}
       <WhyChooseUs />
