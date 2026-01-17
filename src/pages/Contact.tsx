@@ -4,7 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import {
+  Phone,
+  Mail,
+  Clock,
+  Instagram,
+  Facebook,
+  Linkedin,
+} from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import monitoringCenter from "@/assets/monitoring-center.jpg";
 
@@ -54,7 +61,10 @@ const Contact = () => {
 
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify(payload),
       });
 
@@ -98,7 +108,8 @@ const Contact = () => {
             Contact Us
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Ready to secure your property? Get in touch for a free consultation and quote.
+            Ready to secure your property? Get in touch for a free consultation
+            and quote.
           </p>
         </div>
       </section>
@@ -178,13 +189,19 @@ const Contact = () => {
                   />
                 </div>
 
-                <Button type="submit" variant="hero" size="lg" disabled={isSubmitting}>
+                <Button
+                  type="submit"
+                  variant="hero"
+                  size="lg"
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
 
                 {/* Optional helper text */}
                 <p className="text-sm text-muted-foreground">
-                  By submitting this form, you agree to be contacted about your enquiry.
+                  By submitting this form, you agree to be contacted about your
+                  enquiry.
                 </p>
               </form>
             </div>
@@ -209,7 +226,9 @@ const Contact = () => {
                     <Phone className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Phone</h4>
+                    <h4 className="font-semibold text-foreground mb-1">
+                      Phone
+                    </h4>
                     <a
                       href="tel:03337724575"
                       className="text-muted-foreground hover:text-primary transition-colors"
@@ -224,7 +243,9 @@ const Contact = () => {
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Email</h4>
+                    <h4 className="font-semibold text-foreground mb-1">
+                      Email
+                    </h4>
                     <a
                       href="mailto:info@apecon.co.uk"
                       className="text-muted-foreground hover:text-primary transition-colors"
@@ -234,15 +255,44 @@ const Contact = () => {
                   </div>
                 </div>
 
+                {/* ✅ Social Media (replaces Address) */}
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <MapPin className="h-6 w-6 text-primary" />
+                    <Instagram className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Address</h4>
-                    <p className="text-muted-foreground">
-                      8 Shortheath Road, Birmingham, B23 6JP
-                    </p>
+                    <h4 className="font-semibold text-foreground mb-1">
+                      Social Media
+                    </h4>
+                    <div className="flex flex-wrap gap-x-4 gap-y-2">
+                      <a
+                        href="https://www.instagram.com/apeconltd?utm_source=qr&igsh=NWt2Nm40ZGJydm5m"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors text-sm inline-flex items-center gap-2"
+                      >
+                        <Instagram className="h-4 w-4" />
+                        Instagram
+                      </a>
+                      <a
+                        href="https://www.facebook.com/share/1A9672H9bM/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors text-sm inline-flex items-center gap-2"
+                      >
+                        <Facebook className="h-4 w-4" />
+                        Facebook
+                      </a>
+                      <a
+                        href="https://www.linkedin.com/posts/apecon-ltd_cctvcamera-cctvinstallation-securityalert-activity-7418304648987676672-gQPV?utm_source=share&utm_medium=member_android&rcm=ACoAAAM5g_gBqzRNsZdJDKnAfYJzggVRbcYIFp8"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors text-sm inline-flex items-center gap-2"
+                      >
+                        <Linkedin className="h-4 w-4" />
+                        LinkedIn
+                      </a>
+                    </div>
                   </div>
                 </div>
 
@@ -251,13 +301,17 @@ const Contact = () => {
                     <Clock className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Working Hours</h4>
+                    <h4 className="font-semibold text-foreground mb-1">
+                      Working Hours
+                    </h4>
                     <p className="text-muted-foreground">
                       Monday - Friday: 9:00 AM - 6:00 PM
                       <br />
                       Saturday: 10:00 AM - 4:00 PM
                       <br />
-                      <span className="text-accent font-medium">24/7 Emergency Support</span>
+                      <span className="text-accent font-medium">
+                        24/7 Emergency Support
+                      </span>
                     </p>
                   </div>
                 </div>
