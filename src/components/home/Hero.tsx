@@ -17,7 +17,7 @@ const Hero = () => {
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight mb-6">
               We focus on solutions
-              <span className="block text-primary">Not on sale</span>
+              <span className="block text-primary">Not sale</span>
             </h1>
             
             <p className="text-lg text-muted-foreground mb-8 max-w-xl">
