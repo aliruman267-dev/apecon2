@@ -8,11 +8,13 @@ import ProcessSection from "@/components/home/ProcessSection";
 import CTABanner from "@/components/home/CTABanner";
 import QuoteModal from "@/components/quote/QuoteModal";
 import EstablishedBanner from "@/components/home/EstablishedBanner";
-
+import CustomerReviews from "@/components/home/CustomerReviews";
 
 const Index = () => {
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
-  const [quoteType, setQuoteType] = useState<"residential" | "commercial" | null>(null);
+  const [quoteType, setQuoteType] = useState<
+    "residential" | "commercial" | null
+  >(null);
 
   const handlePropertySelect = (type: "residential" | "commercial") => {
     setQuoteType(type);
@@ -22,15 +24,16 @@ const Index = () => {
   return (
     <Layout>
       <Hero />
-       <EstablishedBanner />
+      <EstablishedBanner />
       <ServicesPreview />
       {/* <PropertyTypeSection onSelectProperty={handlePropertySelect} /> */}
       <WhyChooseUs />
+      <CustomerReviews />
       <ProcessSection />
       <CTABanner />
-      
-      <QuoteModal 
-        isOpen={quoteModalOpen} 
+
+      <QuoteModal
+        isOpen={quoteModalOpen}
         onClose={() => {
           setQuoteModalOpen(false);
           setQuoteType(null);
