@@ -32,7 +32,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData((prev) => ({
       ...prev,
@@ -284,7 +284,7 @@ const Contact = () => {
                         Facebook
                       </a>
                       <a
-                        href="https://www.linkedin.com/posts/apecon-ltd_cctvcamera-cctvinstallation-securityalert-activity-7418304648987676672-gQPV?utm_source=share&utm_medium=member_android&rcm=ACoAAAM5g_gBqzRNsZdJDKnAfYJzggVRbcYIFp8"
+                        href="https://www.linkedin.com/company/apecon-ltd/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-muted-foreground hover:text-primary transition-colors text-sm inline-flex items-center gap-2"
