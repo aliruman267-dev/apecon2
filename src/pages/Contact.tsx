@@ -15,8 +15,6 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import monitoringCenter from "@/assets/monitoring-center.jpg";
 
-const WEB3FORMS_KEY = "f7711d56-154a-42ad-b411-1b675254972f";
-
 const Contact = () => {
   const { toast } = useToast();
 
@@ -49,28 +47,21 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const payload = {
-        access_key: WEB3FORMS_KEY,
-        subject: "New Contact Enquiry - Apecon",
-        from_name: "Apecon Website",
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        message: formData.message,
-      };
-
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          website: formData.website,
+        }),
       });
 
       const data = await res.json();
 
-      if (!res.ok || !data?.success) {
+      if (!res.ok || !data?.ok) {
         throw new Error(data?.message || "Failed to send. Please try again.");
       }
 
@@ -188,7 +179,6 @@ const Contact = () => {
                     required
                   />
                 </div>
-                <div className="h-captcha" data-captcha="true"></div>
 
                 <Button
                   type="submit"
@@ -199,7 +189,6 @@ const Contact = () => {
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
 
-                {/* Optional helper text */}
                 <p className="text-sm text-muted-foreground">
                   By submitting this form, you agree to be contacted about your
                   enquiry.
@@ -318,6 +307,7 @@ const Contact = () => {
                 </div>
               </div>
             </div>
+            {/* /Contact Info */}
           </div>
         </div>
       </section>

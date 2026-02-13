@@ -10,9 +10,9 @@ interface PropertyTypeSectionProps {
   onSelectProperty: (type: "residential" | "commercial") => void;
 }
 
-const WEB3FORMS_KEY = "f7711d56-154a-42ad-b411-1b675254972f";
-
-const PropertyTypeSection = ({ onSelectProperty }: PropertyTypeSectionProps) => {
+const PropertyTypeSection = ({
+  onSelectProperty,
+}: PropertyTypeSectionProps) => {
   const { toast } = useToast();
   const [callbackForm, setCallbackForm] = useState({
     name: "",
@@ -38,24 +38,19 @@ const PropertyTypeSection = ({ onSelectProperty }: PropertyTypeSectionProps) => 
     setIsSubmitting(true);
 
     try {
-      const payload = {
-        access_key: WEB3FORMS_KEY,
-        subject: "Callback Request - Apecon",
-        from_name: "Apecon Website",
-        form_type: "callback",
-        name: callbackForm.name,
-        mobile: callbackForm.mobile,
-      };
-
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/callback", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: callbackForm.name,
+          mobile: callbackForm.mobile,
+          website: callbackForm.website,
+        }),
       });
 
       const data = await res.json();
 
-      if (!res.ok || !data?.success) {
+      if (!res.ok || !data?.ok) {
         throw new Error(data?.message || "Failed to submit. Please try again.");
       }
 
@@ -119,7 +114,9 @@ const PropertyTypeSection = ({ onSelectProperty }: PropertyTypeSectionProps) => 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-              <h3 className="text-2xl font-display font-bold">Business / Shop</h3>
+              <h3 className="text-2xl font-display font-bold">
+                Business / Shop
+              </h3>
               <p className="text-white/80">Commercial security solutions</p>
             </div>
           </button>
@@ -154,6 +151,7 @@ const PropertyTypeSection = ({ onSelectProperty }: PropertyTypeSectionProps) => 
                   required
                 />
               </div>
+
               <div className="space-y-2">
                 <Label htmlFor="callback-mobile">Mobile Number *</Label>
                 <Input
@@ -166,7 +164,13 @@ const PropertyTypeSection = ({ onSelectProperty }: PropertyTypeSectionProps) => 
                   required
                 />
               </div>
-              <Button type="submit" variant="hero" className="w-full" disabled={isSubmitting}>
+
+              <Button
+                type="submit"
+                variant="hero"
+                className="w-full"
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? "Submitting..." : "Request a Call Back"}
               </Button>
             </form>

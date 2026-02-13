@@ -13,12 +13,18 @@ interface QuoteModalProps {
   initialType?: "residential" | "commercial" | null;
 }
 
-const WEB3FORMS_KEY = "f7711d56-154a-42ad-b411-1b675254972f";
-
-const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) => {
+const QuoteModal = ({
+  isOpen,
+  onClose,
+  initialType = null,
+}: QuoteModalProps) => {
   const { toast } = useToast();
-  const [step, setStep] = useState<"select" | "form">(initialType ? "form" : "select");
-  const [quoteType, setQuoteType] = useState<"residential" | "commercial" | null>(initialType);
+  const [step, setStep] = useState<"select" | "form">(
+    initialType ? "form" : "select",
+  );
+  const [quoteType, setQuoteType] = useState<
+    "residential" | "commercial" | null
+  >(initialType);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [serviceDropdownOpen, setServiceDropdownOpen] = useState(false);
 
@@ -56,7 +62,9 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
   }, [isOpen, initialType]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     setFormData((prev) => ({
       ...prev,
@@ -97,7 +105,7 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
     // ✅ bot trap
     if (formData.website?.trim()) return;
 
-    // ✅ service is marked required in UI, enforce it
+    // ✅ service required
     if (!formData.service?.trim()) {
       toast({
         title: "Service Required",
@@ -110,42 +118,34 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
     setIsSubmitting(true);
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const payload: Record<string, any> = {
-        access_key: WEB3FORMS_KEY,
-        subject:
-          quoteType === "residential" ? "Residential Quote Request - Apecon" : "Commercial Quote Request - Apecon",
-        from_name: "Apecon Website",
-        form_type: "quote",
-        quote_type: quoteType ?? "",
+      const payload = {
+        quoteType: quoteType ?? null,
         fullName: formData.fullName,
         mobile: formData.mobile,
         email: formData.email || "",
         service: formData.service,
         message: formData.message || "",
         postcode: formData.postcode,
+
+        propertyType: quoteType === "residential" ? formData.propertyType : "",
+        bedrooms: quoteType === "residential" ? formData.bedrooms : "",
+
+        businessName: quoteType === "commercial" ? formData.businessName : "",
+        premisesType: quoteType === "commercial" ? formData.premisesType : "",
+        numberOfSites: quoteType === "commercial" ? formData.numberOfSites : "",
+
+        website: formData.website,
       };
 
-      if (quoteType === "residential") {
-        payload.propertyType = formData.propertyType;
-        payload.bedrooms = formData.bedrooms;
-      }
-
-      if (quoteType === "commercial") {
-        payload.businessName = formData.businessName;
-        payload.premisesType = formData.premisesType;
-        payload.numberOfSites = formData.numberOfSites;
-      }
-
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/quote", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
       const data = await res.json();
 
-      if (!res.ok || !data?.success) {
+      if (!res.ok || !data?.ok) {
         throw new Error(data?.message || "Failed to submit. Please try again.");
       }
 
@@ -172,16 +172,26 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-foreground/50 backdrop-blur-sm" onClick={onClose} />
+      <div
+        className="absolute inset-0 bg-foreground/50 backdrop-blur-sm"
+        onClick={onClose}
+      />
 
       {/* Modal */}
       <div className="relative bg-background rounded-2xl shadow-2xl w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-border">
           <h2 className="text-xl font-display font-bold text-foreground">
-            {step === "select" ? "Get a Quote" : quoteType === "residential" ? "Residential Quote" : "Commercial Quote"}
+            {step === "select"
+              ? "Get a Quote"
+              : quoteType === "residential"
+                ? "Residential Quote"
+                : "Commercial Quote"}
           </h2>
-          <button onClick={onClose} className="p-2 hover:bg-muted rounded-full transition-colors">
+          <button
+            onClick={onClose}
+            className="p-2 hover:bg-muted rounded-full transition-colors"
+          >
             <X className="h-5 w-5" />
           </button>
         </div>
@@ -193,6 +203,7 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
               <p className="text-muted-foreground mb-6">
                 Please select your property type to continue:
               </p>
+
               <button
                 onClick={() => handleTypeSelect("residential")}
                 className="w-full p-6 text-left rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-all group"
@@ -204,6 +215,7 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
                   Security solutions for homes and flats
                 </p>
               </button>
+
               <button
                 onClick={() => handleTypeSelect("commercial")}
                 className="w-full p-6 text-left rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-all group"
@@ -277,13 +289,20 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
                     onClick={() => setServiceDropdownOpen(!serviceDropdownOpen)}
                     className="w-full flex items-center justify-between px-3 py-2 border border-input rounded-md bg-background text-left hover:bg-muted transition-colors"
                   >
-                    <span className={formData.service ? "text-foreground" : "text-muted-foreground"}>
+                    <span
+                      className={
+                        formData.service
+                          ? "text-foreground"
+                          : "text-muted-foreground"
+                      }
+                    >
                       {formData.service || "Select a service"}
                     </span>
                     <ChevronDown
                       className={`h-4 w-4 transition-transform ${serviceDropdownOpen ? "rotate-180" : ""}`}
                     />
                   </button>
+
                   {serviceDropdownOpen && (
                     <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-lg shadow-lg z-10">
                       {serviceOptions.map((service) => (
@@ -308,7 +327,10 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
                     <Label>Property Type *</Label>
                     <div className="flex gap-4">
                       {["House", "Flat"].map((type) => (
-                        <label key={type} className="flex items-center gap-2 cursor-pointer">
+                        <label
+                          key={type}
+                          className="flex items-center gap-2 cursor-pointer"
+                        >
                           <input
                             type="radio"
                             name="propertyType"
@@ -328,7 +350,10 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
                     <Label>Number of Bedrooms *</Label>
                     <div className="flex flex-wrap gap-3">
                       {["1", "2", "3", "4", "5+"].map((num) => (
-                        <label key={num} className="flex items-center gap-2 cursor-pointer">
+                        <label
+                          key={num}
+                          className="flex items-center gap-2 cursor-pointer"
+                        >
                           <input
                             type="radio"
                             name="bedrooms"
@@ -377,7 +402,10 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
                     <Label>Premises Type *</Label>
                     <div className="flex flex-wrap gap-3">
                       {["Shop", "Office", "Warehouse", "Other"].map((type) => (
-                        <label key={type} className="flex items-center gap-2 cursor-pointer">
+                        <label
+                          key={type}
+                          className="flex items-center gap-2 cursor-pointer"
+                        >
                           <input
                             type="radio"
                             name="premisesType"
@@ -397,7 +425,10 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
                     <Label>Number of Sites *</Label>
                     <div className="flex gap-4">
                       {["1", "2-3", "4+"].map((num) => (
-                        <label key={num} className="flex items-center gap-2 cursor-pointer">
+                        <label
+                          key={num}
+                          className="flex items-center gap-2 cursor-pointer"
+                        >
                           <input
                             type="radio"
                             name="numberOfSites"
@@ -440,7 +471,12 @@ const QuoteModal = ({ isOpen, onClose, initialType = null }: QuoteModalProps) =>
                 />
               </div>
 
-              <Button type="submit" variant="hero" className="w-full" disabled={isSubmitting}>
+              <Button
+                type="submit"
+                variant="hero"
+                className="w-full"
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? "Submitting..." : "Request a Call Back"}
               </Button>
 
