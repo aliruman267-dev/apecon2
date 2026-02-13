@@ -188,6 +188,7 @@ const Contact = () => {
                     required
                   />
                 </div>
+                <div className="h-captcha" data-captcha="true"></div>
 
                 <Button
                   type="submit"
